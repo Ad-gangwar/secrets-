@@ -7,7 +7,7 @@ export default function Secrets() {
 
     const loadData = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/displaySecret', {
+            const response = await fetch('https://sec-ohbv.onrender.com/api/displaySecret', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
