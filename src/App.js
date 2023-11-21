@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "./styles.css";
+import "./bootstrap-social.css";
+import React from "react";
+// import ReactDOM from 'react-dom/client';
+import Register from "../src/components/Register";
+import Home from "../src/components/Home";
+import Login from "./components/Login";
+import Secrets from "./components/secrets";
+import Submit from './components/submit';
+
+import { BrowserRouter as Router,
+  Routes, 
+  Route} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+   <Router>
+    <div>
+      <Routes>
+        <Route path="/" element={<Home/>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/register" element={<Register/>}></Route>
+        <Route path="/secrets" element={<Secrets/>}></Route>
+        <Route path="/submit" element={<Submit/>}></Route>
+      </Routes>
     </div>
+   </Router>
   );
 }
 
