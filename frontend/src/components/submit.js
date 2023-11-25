@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+const URL=require('../helper');
 export default function Submit() {
   const [secret, setSecret] = useState("");
   let navigate=useNavigate();
@@ -10,7 +10,7 @@ export default function Submit() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const response = await fetch('https://sec-ohbv.onrender.com/api/submitSecret', {
+    const response = await fetch(`${URL}/api/submitSecret`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

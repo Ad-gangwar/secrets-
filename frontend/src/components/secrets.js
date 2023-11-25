@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
-
+const URL=require('../helper');
 export default function Secrets() {
     const navigate = useNavigate();
     const [secrets, setSecrets] = useState([]);
 
     const loadData = async () => {
         try {
-            const response = await fetch('https://sec-ohbv.onrender.com/api/displaySecret', {
+            const response = await fetch(`${URL}/api/displaySecret`, {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-
+const URL=require('../helper');
 export default function Login() {
     let navigate = useNavigate();
     const [info, setInfo] = useState({
@@ -17,7 +17,7 @@ export default function Login() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const response = await fetch('https://sec-ohbv.onrender.com/api/loginUser', {
+        const response = await fetch(`${URL}/api/loginUser`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
