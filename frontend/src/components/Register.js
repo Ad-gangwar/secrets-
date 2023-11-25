@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Link, useNavigate } from 'react-router-dom'
-const URL=require('../helper');
+import { BASE_URL } from '../helper';
 export default function Register() {
     const navigate = useNavigate();
     const [info, setInfo] = useState({
@@ -17,7 +17,7 @@ export default function Register() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const response = await fetch(`${URL}/api/createUser`, {
+        const response = await fetch(`${BASE_URL}/api/createUser`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

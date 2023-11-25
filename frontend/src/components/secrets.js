@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
-const URL=require('../helper');
+// Register.js or any other file
+import { BASE_URL } from '../helper';
+
 export default function Secrets() {
     const navigate = useNavigate();
     const [secrets, setSecrets] = useState([]);
 
     const loadData = async () => {
         try {
-            const response = await fetch(`${URL}/api/displaySecret`, {
+            const response = await fetch(`${BASE_URL}/api/displaySecret`, {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
