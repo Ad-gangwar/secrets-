@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { BASE_URL } from '../helper';
+const { BASE_URL } =require('../helper');
+
 export default function Login() {
     let navigate = useNavigate();
     const [info, setInfo] = useState({

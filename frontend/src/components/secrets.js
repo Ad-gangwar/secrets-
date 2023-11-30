@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 // Register.js or any other file
-import { BASE_URL } from '../helper';
+const { BASE_URL } =require('../helper');
 
 export default function Secrets() {
     const navigate = useNavigate();
