@@ -12,27 +12,35 @@ app.use(express.json());
 
 router.post('/createUser', [
     body('email').isEmail(),
-    body('password').isLength({ min: 5 }).withMessage('should contain min 5 char'),
+    body('password').isLength({ min: 5 }).withMessage('should contain at least 5 characters'),
 ], async (req, res) => {
-    const result = validationResult(req);
+    const errors = validationResult(req);
 
-    if (!result.isEmpty()) {
-        return res.status(400).json({ errors: result.array() });
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
     }
-    const salt=await bcrypt.genSalt(10);
-    const secPass=await bcrypt.hash(req.body.password, salt);
+
     try {
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
         const user = await User.create({
             email: req.body.email,
-            password: secPass
+            password: hashedPassword,
         });
+
         res.json({ success: true });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ success: false });
+
+        if (err.code === 11000) {
+            // Duplicate key (e.g., duplicate email)
+            return res.status(400).json({ success: false, error: 'Email already exists' });
+        }
+
+        res.status(500).json({ success: false, error: 'Internal Server Error' });
     }
 });
-
 
 router.post('/loginUser', [
     body('email').isEmail(),
