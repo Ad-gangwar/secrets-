@@ -15,17 +15,10 @@ app.use((req, res, next)=>{
     );
     next();
 })
+
 // Middleware to parse JSON requests
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "./backend/build")));
-app.get("/", (req, res) => {
-    res.send("hello");
-});
-app.get('*', function (_, res){
-    res.sendFile(path.join(__dirname, "./frontend/build/index.html"), function(err){
-        res.status(500).send(err);
-    })
-})
+
 // Assuming 'createUser' is a router module
 app.use('/api', require('./Routes/createUser'));
 app.use('/api', require('./Routes/submitSecret'));
